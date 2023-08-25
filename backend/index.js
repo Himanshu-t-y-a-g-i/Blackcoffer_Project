@@ -1,5 +1,6 @@
 const express = require("express");
-const { connection } = require("./db/db");
+const { connection } = require("./dbsetup/db");
+const { mainRoutes } = require("./routes/mainroutes");
 require("dotenv").config();
 
 const app = express();
@@ -8,6 +9,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("This is express app");
 })
+app.use("/main", mainRoutes);
 
 app.listen(process.env.port, async () => {
     try {
